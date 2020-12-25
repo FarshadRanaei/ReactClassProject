@@ -11,18 +11,40 @@ const Todolist = () => {
     const [todoList, setTodoList] = useState([]);
 
     const addToDo = () => {
-        setTodoList(([...todoList, { "value": value, "key": todoList.length + 1 }]),
-            () => localStorage.setItem("todoList", JSON.stringify(todoList)));
+        if (!key) {
+            setTodoList(() => [...todoList, { "value": value, "key": todoList.length + 1 }]);
+        }
+        else {
+            todoList.find(o => o.key === key).value = value;
+            setTodoList(todoList);
+            setKey(0);
+        }
+        setValue("");
+    }
+
+    const removeTodo = (id) => {
+        const removeItem = todoList.filter(o => o.key !== id);
+        setTodoList(removeItem);
+    }
+
+    const [key, setKey] = useState(0);
+    const editTodo = (id) => {
+        const editItem = todoList.find(o => o.key === id);
+        setValue(editItem.value);
+        setKey(id);
     }
 
     useEffect(() => {
         setTodoList(JSON.parse(localStorage.getItem("todoList")) || []);
     }, []);
 
+    useEffect(() => {
+        localStorage.setItem("todoList", JSON.stringify(todoList));
+    }, [todoList]);
+
     return (
         <>
             <span>
-                {/* {value} */}
                 <Input
                     type="text"
                     value={value}
@@ -35,7 +57,19 @@ const Todolist = () => {
             </span>
             <div>
                 <ul>
-                    {todoList.map(todo => <li key={todo.key}>{todo.value}</li>)}
+                    {todoList.map(todo => <li key={todo.key}>{todo.value}
+                        <span
+                            style={{ margin: '5px', color: 'red' }}
+                            onClick={e => removeTodo(todo.key)}>
+                            x
+                        </span>
+                        <span
+                            style={{ margin: '5px', color: 'red' }}
+                            onClick={e => editTodo(todo.key)}>
+                            Edit
+                        </span>
+                    </li>
+                    )}
                 </ul>
             </div>
         </>
