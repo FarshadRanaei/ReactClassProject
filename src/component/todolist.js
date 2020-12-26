@@ -1,5 +1,7 @@
 import { Input, Button } from 'antd';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { setTodo } from "../redux/action/action";
 
 
 const Todolist = () => {
@@ -12,6 +14,7 @@ const Todolist = () => {
 
     const addToDo = () => {
         if (!key) {
+            useDispatch()
             setTodoList(() => [...todoList, { "value": value, "key": todoList.length + 1 }]);
         }
         else {
