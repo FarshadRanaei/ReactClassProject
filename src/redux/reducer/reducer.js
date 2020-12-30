@@ -3,10 +3,9 @@ export function reducer(state = { toDoList: [] }, action) {
         case "ADDTODO":
             return {
                 ...state,
-                toDoList:
-                    action.payload
+                toDoList: action.payload
             }
         default:
-            break;
+            return state;
     }
 }

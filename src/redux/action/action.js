@@ -1,3 +1,3 @@
 export function setTodo(data) {
-    return { type: "ADDTODO", payload: data || 0 }
+    return { type: "ADDTODO", payload: data || [] }
 }
