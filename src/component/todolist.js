@@ -55,11 +55,11 @@ const Todolist = () => {
             <Divider orientation="left"></Divider>
             <Row gutter={16}>
                 <Col span={10}>
-                    <Input id="txtItem" type="text" value={value} onChange={onChange} />
+                    <Input id="txtItem" type="text" value={value} onChange={onChange} data-testid="value" />
                 </Col>
                 <Col span={4}>
-                    <Button type="primary" htmlType="submit" onClick={addToDo}>
-                        <PlusCircleFilled />
+                    <Button type="primary" htmlType="submit" onClick={addToDo} data-testid="btnAdd">
+                        <PlusCircleFilled data-testid="InnerButton" />
                                 Add todo
                     </Button>
                 </Col>

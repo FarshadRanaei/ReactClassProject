@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, fireEvent, getByText } from "@testing-library/react";
 import Todolist from './todolist'
 import { reducer } from '../redux/reducer/reducer'
 import { createStore } from 'redux'
@@ -26,6 +26,25 @@ it('first test', () => {
     const { getByText } = renderWithRedux(<Todolist />);
     const todoListText = getByText("ToDo List");
     expect(todoListText).toBeInTheDocument();
-    // expect(getByTestId('counter')).toHaveTextContent('0')
+    getByText("Add todo");
+})
+
+test("second test", () => {
+    const { getByTestId } = renderWithRedux(<Todolist />);
+    getByTestId("btnAdd");
+    const InnerButton = getByTestId("InnerButton");
+    expect(getByTestId("btnAdd")).toContainElement(InnerButton);
+})
+
+test("third test", () => {
+    const { getByTestId, getByText } = renderWithRedux(<Todolist />);
+
+    const item = "farshad";
+    const input = getByTestId("value");
+    const button = getByTestId("btnAdd");
+
+    fireEvent.change(input, { target: { value: item } });
+    fireEvent.click(button);
+    getByText(item);
 })
 
