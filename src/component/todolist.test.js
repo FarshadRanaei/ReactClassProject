@@ -1,4 +1,4 @@
-import { screen, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import Todolist from './todolist'
 import { reducer } from '../redux/reducer/reducer'
 import { createStore } from 'redux'
@@ -11,6 +11,7 @@ const initialState = {
     toDoList: [],
 }
 
+
 const renderWithRedux = (
     component,
     { initialState, store = createStore(reducer, initialState) } = {}
@@ -21,26 +22,10 @@ const renderWithRedux = (
     }
 }
 
-it('checks initial state is equal to 0', () => {
+it('first test', () => {
     const { getByText } = renderWithRedux(<Todolist />);
-    const todoListText = screen.getByText(/ToDo List/i);
+    const todoListText = getByText("ToDo List");
     expect(todoListText).toBeInTheDocument();
     // expect(getByTestId('counter')).toHaveTextContent('0')
-
 })
 
-// const mockStore = configureMockStore();
-// test("TestContains", () => {
-    // const store = mockStore({
-    //     startup: { toDoList: [] }
-    // });
-    // const wrapper = mount(
-    //     <Provider store={store}>
-    //         <Todolist />;
-    //     </Provider>
-    // )
-//     render(<Todolist />)
-
-//     const todoListText = screen.getByText(/ToDo List/i);
-//     expect(todoListText).toBeInTheDocument();
-// })
