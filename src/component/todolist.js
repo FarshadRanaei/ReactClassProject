@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setTodo } from "../redux/action/action";
 import { EditFilled, DeleteFilled, PlusCircleFilled } from "@ant-design/icons";
 import 'antd/dist/antd.css';
-import './styles.less';
 
 
 const Todolist = () => {
