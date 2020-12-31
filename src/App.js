@@ -1,10 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
-import Todolist from './component/todolist';
+import Todolist from './component/TodoList';
+import AddItem from "./component/AddItem"
 
 function App() {
   return (
-    <Todolist />
+    <>
+      <AddItem />
+      <Todolist />
+    </>
   );
 }
 
